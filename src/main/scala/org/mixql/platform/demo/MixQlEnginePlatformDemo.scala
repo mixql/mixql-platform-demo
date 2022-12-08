@@ -24,13 +24,13 @@ object MixQlEnginePlatformDemo:
     val engines = mutable.Map[String, Engine]("demo" -> new ClientModule(
       //Name of client, is used for identification in broker,
       //must be unique
-      "mixql-platform-demo-engine-1",
+      "mixql-engine-stub-demo-platform",
       //Name of remote engine, is used for identification in broker,
       //must be unique
-      "mixql-engine-demo-1",
+      "mixql-engine-stub",
       //will be started mixql-engine-demo on linux or mixql-engine-demo.bat on windows
       //in base path
-      "mixql-engine-demo",
+      "mixql-engine-stub",
       host, portFrontend, portBackend, basePath, broker
     ))
 
