@@ -19,6 +19,7 @@ object MixQlEnginePlatformDemo:
     println(s"Mixql engine demo platform: Starting broker messager with" +
       s" frontend port $portFrontend and backend port $portBackend on host $host")
     val broker = new BrokerModule(portFrontend, portBackend, host)
+    broker.start()
 
     println(s"Mixql engine demo platform: initialising engines")
     val engines = mutable.Map[String, Engine]("demo" -> new ClientModule(
