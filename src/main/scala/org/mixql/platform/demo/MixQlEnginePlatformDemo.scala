@@ -5,9 +5,11 @@ import org.mixql.core.run
 import org.rogach.scallop.ScallopConf
 
 import java.io.File
-import org.mixql.cluster.{ClientModule, ClusterContext, BrokerModule}
+import org.mixql.cluster.{BrokerModule, ClientModule}
 import org.mixql.core.engine.Engine
 import org.mixql.net.PortOperations
+import org.mixql.core.context.Context
+import org.mixql.protobuf.messages.clientMsgs.ShutDown
 
 import scala.collection.mutable
 
@@ -31,13 +33,14 @@ object MixQlEnginePlatformDemo:
       "mixql-engine-stub",
       //will be started mixql-engine-demo on linux or mixql-engine-demo.bat on windows
       //in base path
-      "mixql-engine-stub",
-      host, portFrontend, portBackend, basePath, broker
+      Some("mixql-engine-stub"),
+      None,
+      host, portFrontend, portBackend, basePath
     ))
 
     println(s"Mixql engine demo platform: init Cluster context")
     val context =
-      new ClusterContext(engines, "demo", broker)
+      new Context(engines, "demo")
 
     try {
       println(s"Mixql engine demo platform: reading and executing sql files if they exist")
@@ -58,7 +61,15 @@ object MixQlEnginePlatformDemo:
     } catch {
       case e: Throwable => println(s"Error: Mixql engine demo platform: " + e.getMessage)
     } finally {
+      context.engines.values.foreach(
+        e => if (e.isInstanceOf[ClientModule]) {
+          val cl: ClientModule = e.asInstanceOf[ClientModule]
+          println(s"mixql core context: sending shutdwon to remote engine " + cl.name)
+          cl.sendMsg(ShutDown())
+        }
+      )
       context.close()
+      broker.close()
     }
 
   def parseArgs(args: List[String]): (String, Int, Int, File, Option[List[File]]) =
@@ -118,7 +129,7 @@ object MixQlEnginePlatformDemo:
       |*/
       |""".stripMargin
 
-case class AppArgs(arguments: Seq[String]) extends ScallopConf(arguments) :
+case class AppArgs(arguments: Seq[String]) extends ScallopConf(arguments):
 
   import org.rogach.scallop.stringConverter
   import org.rogach.scallop.intConverter

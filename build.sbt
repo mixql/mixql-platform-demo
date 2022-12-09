@@ -9,6 +9,7 @@ lazy val root = project
   .settings(
     name := "mixql-platform-demo",
     version := "0.1.0-SNAPSHOT",
+
     credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
     organization := "org.mixql",
     organizationHomepage := Some(url("https://mixql.org/")),
