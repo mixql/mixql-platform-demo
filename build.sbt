@@ -52,9 +52,10 @@ lazy val root = project
       Seq(
         "org.rogach" %% "scallop" % vScallop,
         "com.typesafe" % "config" % "1.4.2",
-        "org.scalameta" %% "munit" % "0.7.29" % Test,
         "org.mixql" %% "mixql-cluster" % "0.1.0-SNAPSHOT",
-        "org.mixql" %% "mixql-engine-stub" % "0.1.0-SNAPSHOT" % Test
+        "org.mixql" %% "mixql-engine-stub" % "0.1.0-SNAPSHOT" % Test,
+        "org.scalatest" %% "scalatest" % "3.2.14" % Test,
+        "org.scalameta" %% "munit" % "0.7.29" % Test
       )
     },
     scmInfo := Some(
