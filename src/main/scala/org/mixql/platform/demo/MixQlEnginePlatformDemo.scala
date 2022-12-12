@@ -36,7 +36,21 @@ object MixQlEnginePlatformDemo:
       Some("mixql-engine-stub"),
       None,
       host, portFrontend, portBackend, basePath
-    ))
+    ),
+      "sqlite" -> new ClientModule(
+        //Name of client, is used for identification in broker,
+        //must be unique
+        "mixql-engine-sqlite-demo-platform",
+        //Name of remote engine, is used for identification in broker,
+        //must be unique
+        "mixql-engine-sqlite",
+        //will be started mixql-engine-demo on linux or mixql-engine-demo.bat on windows
+        //in base path
+        Some("mixql-engine-sqlite"),
+        None,
+        host, portFrontend, portBackend, basePath
+      )
+    )
 
     println(s"Mixql engine demo platform: init Cluster context")
     val context =
