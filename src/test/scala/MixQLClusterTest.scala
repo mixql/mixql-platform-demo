@@ -31,9 +31,23 @@ object MixQLClusterTest{
       //will be started mixql-engine-demo on linux or mixql-engine-demo.bat on windows
       //in base path
       None,
-      Some(LocalClientModuleExecutor),
+      Some(MixQlEngineStubExecutor),
       host, portFrontend, portBackend, new File(".")
-    ))
+    ),
+      "sqlite" -> new ClientModule(
+        //Name of client, is used for identification in broker,
+        //must be unique
+        "mixql-engine-sqlite-demo-platform",
+        //Name of remote engine, is used for identification in broker,
+        //must be unique
+        "mixql-engine-sqlite",
+        //will be started mixql-engine-demo on linux or mixql-engine-demo.bat on windows
+        //in base path
+        None,
+        Some(MixQlEngineSqliteExecutor),
+        host, portFrontend, portBackend, new File(".")
+      )
+    )
   }
 
 

@@ -7,3 +7,5 @@ print("third element in array is : " || $arr[2]);
 
 print("second element of nested array that is second element of original array: "
     || $arr[1][1]);
+
+print($arr);

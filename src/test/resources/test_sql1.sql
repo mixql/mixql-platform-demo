@@ -1,3 +1,5 @@
+let engine "sqlite";
+
 CREATE TABLE Customers (
                            CustomerName varchar(255),
                            ContactName varchar(255),
@@ -11,4 +13,6 @@ INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Cou
 VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
 
 let a = select * from Customers;
-print("$a");
+print($a);
+
+let engine "demo";
