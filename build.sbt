@@ -8,7 +8,7 @@ lazy val root = project
   .enablePlugins(UniversalPlugin, JavaServerAppPackaging, UniversalDeployPlugin)
   .settings(
     name := "mixql-platform-demo",
-    version := "0.1.0-SNAPSHOT",
+    version := "0.1.0",
 
     credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
     organization := "org.mixql",
@@ -52,11 +52,11 @@ lazy val root = project
       Seq(
         "org.rogach" %% "scallop" % vScallop,
         "com.typesafe" % "config" % "1.4.2",
-        "org.mixql" %% "mixql-cluster" % "0.1.0-SNAPSHOT",
-        "org.mixql" %% "mixql-engine-stub" % "0.1.0-SNAPSHOT" % Test,
+        "org.mixql" %% "mixql-cluster" % "0.1.0",
+        "org.mixql" %% "mixql-engine-stub" % "0.1.0" % Test,
         "org.scalatest" %% "scalatest" % "3.2.14" % Test,
         "org.scalameta" %% "munit" % "0.7.29" % Test,
-        "org.mixql" %% "mixql-engine-sqlite" % "0.1.0-SNAPSHOT" % Test
+        "org.mixql" %% "mixql-engine-sqlite" % "0.1.0" % Test
       )
     },
     scmInfo := Some(
