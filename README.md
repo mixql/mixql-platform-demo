@@ -1,4 +1,5 @@
 ## sbt project compiled with Scala 3
+!!!Project was moved to repo mixql-platform
 
 ### Usage
 
